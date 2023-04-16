@@ -1,0 +1,59 @@
+nav{
+    background-color: rgb(77, 200, 249);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  }
+  
+    
+    h1.intro {
+      padding-left:110px;
+      padding-top: 140px;
+      font-size: 45px;
+     
+      padding-bottom: -30px;
+    }
+    .volunteer {
+      color: rgb(255, 255, 255); 
+    }
+    h1 {
+      padding-top: -30px;
+      font-size:45px;
+      padding-left:110px;
+    
+    }
+    svg{
+      margin-right: 10px;
+    }
+    
+    
+    p {
+      padding-left: 110px;
+    
+      color:Black;
+      font-size: 20px;
+    }
+    .img {
+      width: 370px;
+      height: 370px;
+      padding-right: 500px;
+      padding-top: 80px;
+    }
+    .login {
+      color:white;
+      text-decoration:none;
+    }
+    .login:hover {
+      color:white;
+    }
+    .signup {
+      color:white;
+      text-decoration:none;
+    }
+    .signup:hover {
+      color:white;
+    }
+     
+    body{
+      background-image: url(about.png);
+      background-size:cover ; 
+      /* color:rgb(100, 99, 99) */
+    } 

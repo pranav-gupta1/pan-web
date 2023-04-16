@@ -12,7 +12,7 @@ nav{
     padding-bottom: -30px;
   }
   .volunteer {
-    color: rgb(0, 153, 213); 
+    color: rgb(255, 255, 255); 
   }
   h1 {
     padding-top: -30px;
@@ -53,7 +53,7 @@ nav{
   }
    
   body{
-    background-image: url(https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
+    background-image: url(https://images.unsplash.com/photo-1444210971048-6130cf0c46cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80);
     background-size:cover ; 
     /* color:rgb(100, 99, 99) */
   } 

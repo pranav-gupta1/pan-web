@@ -11,10 +11,11 @@ const profileSchema = new mongoose.Schema({
     },
     name: String,
     email: String,
-    grade: Number,
+    bio: String,
     classesTaking: Array,
     interests: Array,
     reviews: Array,
+    checkins: Number
 })
 
 

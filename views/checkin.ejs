@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/bootstrap.min.css" rel="stylesheet"> 
-    <link href="/css/new.css" rel="stylesheet"> 
-    <script src="/js/jquery.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@500&display=swap" rel="stylesheet">
-    <title>Classes</title>
-</head>
-<body>
+<!DOCTYPE html> 
+<html> 
+<title>Get started</title> 
+
+<head> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   
+    <link rel="stylesheet" href = "/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/FINALSIGNUP.css">
+    <script src="/js/jquery.js"></script> 
+    <script src="/js/bootstrap.min.js"></script> 
+
+</head> 
+<body>  
     <nav class="navbar navbar-expand-lg navbar-light" >
         <div class="container-fluid">
             <a class="navbar-brand" href="/home" style="font-size:25px; color: white; font-family: Verdana, Geneva, Tahoma, sans-serif;">MediCalm <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brightness-alt-high-fill" viewBox="0 0 16 16">
@@ -76,42 +74,55 @@
     </div>
     </nav>
 
-    <div class="filter">
-        <h3>Filter by subject:</h3>
-        <form action="/subject" method="POST">
-            <% for(let category of categories2) { %>
-                <input type="checkbox" name= "<%= category %>" value = "<%= category %>" class = "btn-check" id= "<%= category %>"> </input>
-                <label id="filters" class="btn btn-outline-info" for= "<%=category%>"><%= category %></label>
-            <% } %>
-            <button class="btn btn-secondary btn-sm">Filter</button>
-        </form>
-    </div>
+  <div class="container" id="container">
+    <div class="form-container sign-up-container">
+      <form action="/checkin" method="POST">
+        <h3>What Were Your Emotions This Week?</h3>
+        <div class="social-container">
+          
+          <% for(let category of categories3) { %>
+            <input type="checkbox" name= "<%= category %>" value = "<%= category %>" class = "btn-check" id= "<%= category %>"> </input>
+            <label class="btn btn-outline-info" for= "<%=category%>"><%= category %></label>
+   
+        <% } %>
     
-    <h1 class = "Title">Offerings with <%= myInterests %>:</h1>
-    <% for(let position of reviewArr) { %>
-        <a class = "oneClass" href="/position/<%=position.user_id%>/<%=position.id%>">
-            <div class="card mb-3">
-                <div class="row">
-                    <div class="col-md-2 mt-5 ml-2"><%= position.avgRating %>/5 <svg class="mb-1"xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                      </svg></div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title"><%= position.className %> - <%=position.timing %> </h5>
-                            <p class="card-text">Minimum Age: <%= position.ageLevel %> - <%= position.description %></p>
-                            <p class="card-text">
-                                <small class="text-muted">Provided by <%= position.instructor %> - <%=Math.floor(Math.random() * 10) + 4 %> student(s) %> </small>
-                            </p>
-                        </div>
-                    </div>
-                </div>    
-            </div>
-        </a>
-    <% } %>
-    <h1></h1>
-    <div class="buttons">
-      <a href = "/positions" ><button class="end btn btn-secondary btn-sm" id="orgbutton">Back</button></a>
-      <a href = "/home"><button class="end btn btn-secondary btn-sm" id="homebutton">Go to homepage</button></a>
-  </div> 
-</body>
+        </div>
+        <div class="mb-3"><button>Post</button></div> 
+    <!-- </form>-->
+    </div>
+    <div class="form-container sign-in-container">
+     <!--<form action="/register">-->
+        <div class="card-body">
+        <div>
+            <label for= "notes" class ="mb-2">Weekly Notes:</label>
+            <textarea rows="13" cols="39" name="notes" placeholder="Weekly Notes (Include Activities, Special Events, etc.)"></textarea>
+        </div>
+        <div>
+            <label for= "happy">Happiness Level (1-10):</label>
+            <input type = "number" name = "happy" id = "happy"  placeholder = "Happiness Level (Number from 1-10)" required>
+        </div>
+        
+    </div>
+</div>
+  </form>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h2>Back</h2>
+          <p>Add weekly notes</p>
+          <button class="ghost" id="signIn">Back</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h2>Next</h2>
+          <p>Share your emotions this past week</p>
+          <button class="ghost" id="signUp">Emotions</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/signuppractice.js"></script>
+  </body> 
+</main> 
 </html>
+

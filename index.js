@@ -13,6 +13,7 @@ const mongoose = require('mongoose');
 const orgProfile = require('./models/orgprofiles');
 const Profile = require('./models/profiles')
 const Position = require('./models/positions')
+const Checkin = require('./models/checkin')
 const Review = require('./models/reviews')
 
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
@@ -63,7 +64,9 @@ app.use(session({secret: 'notagoodsecret'}));
 app.use(express.static(path.join(__dirname, 'public')))
 
 const categories1 = ['In-Person', 'Virtual'];
-const categories2 = ['Math', 'Science', 'Music', 'History', 'Business', 'English', 'Spanish', 'Athletics', 'Coding', 'Chess', 'Art', 'Other'];
+//can change to make it for google meet
+const categories2 = ['Yoga', 'Breathing', 'Counseling', 'Destressing', 'Selfcare', 'Massage', 'Therapy', 'Other'];
+const categories3 = ['Happy', 'Sad', 'Stressed', 'Excited', 'Calm', 'Anxious', 'Other'];
 
 app.get('/home', async(req, res) => {
     if(!req.session.user_id){
@@ -248,16 +251,16 @@ app.get('/register', async(req, res) => {
 })
 
 app.post('/orgRegister', async (req, res) => {
-    const {password, username, name, email, age, phoneNum, bio} = req.body;
+    const {password, username, name, email, insta, phoneNum, bio} = req.body;
     const hash = await bcrypt.hash(password, 12);
     const notValidUser = await orgProfile.findOne({username});
     if(notValidUser){
         res.send('Username is already taken')
     }
     else{
-        const {Math, Science, Music, History, Business, English, Spanish, Athletics, Coding, Chess, Art} = req.body;
+        const {Yoga, Breathing, Counseling, Destressing, Selfcare, Massage, Therapy, Other} = req.body;
         const myInterests = [];
-        const interests = [Math, Science, Music, History, Business, English, Spanish, Athletics, Coding, Chess, Art];
+        const interests = [Yoga, Breathing, Counseling, Destressing, Selfcare, Massage, Therapy, Other];
         for(let interest of interests) { 
             if(interest){
                 myInterests.push(interest);
@@ -288,7 +291,7 @@ app.post('/orgRegister', async (req, res) => {
             password: hash,
             name,
             email,
-            age,
+            insta,
             // forwardGeocode: longLat,
             // zipCode,
             // taxID,
@@ -404,7 +407,7 @@ app.get('/profiles', async (req, res) => {
 })
 
 app.post('/register', async (req, res) => {
-    const {password, username, name, grade, email} = req.body;
+    const {password, username, name, grade, email, bio} = req.body;
     const hash = await bcrypt.hash(password, 12);
     const notValidUser = await Profile.findOne({username});
     console.log(username);
@@ -412,9 +415,9 @@ app.post('/register', async (req, res) => {
         res.send('Username is already taken')
     }
     else{
-        const {Math, Science, Music, History, Business, English, Spanish, Athletics, Coding, Chess, Art} = req.body;
+        const {Yoga, Breathing, Counseling, Destressing, Selfcare, Massage, Therapy, Other} = req.body;
         const myInterests = [];
-        const interests = [Math, Science, Music, History, Business, English, Spanish, Athletics, Coding, Chess, Art];
+        const interests = [Yoga, Breathing, Counseling, Destressing, Selfcare, Massage, Therapy, Other];
         for(let interest of interests) { 
             if(interest){
                 myInterests.push(interest);
@@ -446,9 +449,10 @@ app.post('/register', async (req, res) => {
             name,
             // forwardGeoCode: longLat,
             // location: place,
-            grade,
+            bio,
             email,
-            interests: myInterests
+            interests: myInterests,
+            checkins: 0
         })
         await Student.save();
         console.log(Student.forwardGeoCode);
@@ -601,6 +605,40 @@ app.get('/subject', async (req, res) => {
     res.render('subject.ejs', {positions, categories2})
 })
 
+app.get('/checkin', requireLogin, async (req, res) => {
+    const foundUser = await Profile.findById(req.session.user_id);
+    res.render('checkin.ejs', {foundUser, categories2, categories3})
+})
+
+app.post('/checkin', async (req, res) => {
+    const foundUser = await Profile.findById(req.session.user_id);
+    const {emotion, happy, notes} = req.body;
+    const {Happy, Sad, Stressed, Excited, Calm, Anxious, Other} = req.body;
+    const myInterests = [];
+    const interests = [Happy, Sad, Stressed, Excited, Calm, Anxious, Other];
+    for(let interest of interests) { 
+        if(interest){
+            myInterests.push(interest);
+        }
+    }
+    console.log(myInterests);
+    foundUser.checkins = foundUser.checkins+1
+    await foundUser.save()
+    const newLog = new Checkin({
+        emotion: myInterests, 
+        happy,
+        notes,
+        user_id: req.session.user_id,
+        week: foundUser.checkins
+    })
+    await newLog.save();
+    res.redirect('/profilePage')
+    }
+)
+
+app.get('/history', async(req, res) => {
+    res.render('history.ejs');
+})  
 app.get('/addPosition', requireLogin, async(req, res) => {
     const foundUser = await orgProfile.findById(req.session.user_id);
     res.render('addPosition.ejs', {foundUser, categories1, categories2});
@@ -613,7 +651,7 @@ app.get('/addPosition', requireLogin, async(req, res) => {
 // })
 
 app.post('/positions', async (req, res) => {
-    const {className, timing, meetLink, gradeLevel, description, user_id} = req.body;
+    const {className, timing, meetLink, ageLevel, description, user_id} = req.body;
     console.log(req.session.user_id);
     const user = await orgProfile.findById(req.session.user_id);
     if(!user){
@@ -624,9 +662,9 @@ app.post('/positions', async (req, res) => {
             res.redirect('/addPosition')
         }
         else{
-            const {Math, Science, Music, History, Business, English, Spanish, Athletics, Coding, Chess, Art} = req.body;
+            const {Yoga, Breathing, Counseling, Destressing, Selfcare, Massage, Therapy, Other} = req.body;
         const myInterests = [];
-        const interests = [Math, Science, Music, History, Business, English, Spanish, Athletics, Coding, Chess, Art];
+        const interests = [Yoga, Breathing, Counseling, Destressing, Selfcare, Massage, Therapy, Other];
             for(let interest of interests) { 
                 if(interest){
                     myInterests.push(interest);
@@ -654,7 +692,7 @@ app.post('/positions', async (req, res) => {
             const newPosition = new Position({
                 className,
                 instructor: user.name, 
-                gradeLevel,
+                ageLevel,
                 description,
                 timing,
                 meetLink,
@@ -662,6 +700,7 @@ app.post('/positions', async (req, res) => {
                 user_id: req.session.user_id,
                 phoneNum: user.phoneNum,
                 reviews,
+                insta: user.insta,
                 email: user.email,
                 avgRating: 0
             })
@@ -720,9 +759,9 @@ app.delete('/positions/:id', async(req, res) => {
 })
 
 app.post('/subject', async(req, res) => {
-    const {Math, Science, Music, History, Business, English, Spanish, Athletics, Coding, Chess, Art} = req.body;
+    const {Yoga, Breathing, Counseling, Destressing, Selfcare, Massage, Therapy, Other} = req.body;
     const myInterests = [];
-    const interests = [Math, Science, Music, History, Business, English, Spanish, Athletics, Coding, Chess, Art];  
+    const interests = [Yoga, Breathing, Counseling, Destressing, Selfcare, Massage, Therapy, Other];  
     for(let interest of interests) { 
         if(interest){
             myInterests.push(interest);
