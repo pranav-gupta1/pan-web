@@ -1,0 +1,47 @@
+nav{
+    background-color: rgb(77, 200, 249);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.card{
+    margin-top: 70px;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+
+body{
+    background-color: snow;
+}
+
+h4{
+    color:gray;
+}
+
+#pfp{
+    margin-top:25px;
+    margin-left:400px;
+    margin-right:400px;
+    width:600px;
+    margin-bottom:25px;
+}
+
+h5{
+    color:gray;
+}
+
+#label{
+    color:black;
+}
+
+#invis{
+    color:white;
+}
+
+a{
+    color:rgb(77, 200, 249);
+    text-decoration: none;
+}
+
+a:hover{
+    color:rgb(0, 183, 255);
+}

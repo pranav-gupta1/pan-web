@@ -1,0 +1,70 @@
+nav{
+    background-color: rgb(77, 200, 249);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.card{
+    margin-top: 70px;
+    margin-left: 300px;
+    margin-right: 300px;
+    display:inline-block;
+}
+
+#invis{
+    color:white;
+}
+
+#review{
+    margin-bottom:0px;
+}
+
+#meet{
+    margin-top: 40px;
+    width:400px;
+    padding: 20px;
+}
+
+.column {
+    float: left;
+    width: 45%;
+    padding: 0 10px;
+  }
+  
+.row {margin: 0 -5px;}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+
+body{
+    background-color: snow;
+}
+
+#main{
+    margin-left:75px;
+    width:800px;
+}
+
+#review{
+    width:400px;
+    padding: 20px;
+}
+
+a{
+    color:rgb(77, 200, 249);
+    text-decoration: none;
+}
+
+a:hover{
+    color:rgb(0, 183, 255);
+}

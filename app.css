@@ -1,0 +1,18 @@
+nav{
+    background-color: rgb(77, 200, 249);
+    height:200px;
+    margin:-10px;
+}
+h1{
+   font-size: 50px;
+   font-family: Arial, Helvetica, sans-serif;
+   color:snow;
+}
+
+img{
+    height:140px;
+    width:140px;
+    padding-right:375px;
+    padding-top:30px;
+    padding-left:30px;
+}

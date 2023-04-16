@@ -1,0 +1,63 @@
+body{
+    background-color: snow;
+    color:rgb(100, 99, 99);
+}
+
+
+
+.icon{
+    margin-right: 10px;
+}
+
+nav{
+    background-color: rgb(77, 200, 249);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.end{
+    margin-bottom: 25px;
+}
+
+.filter{
+    text-align:center;
+    margin-top: 25px;
+    margin-bottom:25px;
+}
+
+.Title{
+    margin-top: 50px;
+}
+
+h1{
+    margin-left: 100px;
+}
+
+.card{
+    border-color:none;
+    border-width: 1px;
+    background-color: snow;
+    margin-left:100px;
+    margin-right:100px;
+}
+
+.card:hover{
+    border-color:rgb(77, 200, 249);
+    border-width: 2px;
+}
+
+.col-md-2{
+    text-align: center;
+}
+
+a{
+    color:rgb(77, 200, 249);
+    text-decoration: none;
+}
+
+a:hover{
+    color:rgb(77, 200, 249);
+}
+
+.buttons{
+    margin-left: 100px;
+}

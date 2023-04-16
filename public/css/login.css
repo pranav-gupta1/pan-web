@@ -1,0 +1,24 @@
+body{ 
+    height: 100vh;
+    background-image: url(cacBg1.png);
+    background-repeat: no-repeat;
+     background-size: cover; 
+    color: black;
+    background-color:snow;
+ } 
+ 
+     
+     
+ .container{
+      height:500px ; 
+      width: 389px; 
+      /* font-family: 'Montserrat', sans-serif;  */
+ }
+ 
+
+ 
+ nav{
+     background-color: rgb(77, 200, 249);
+     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+ }
+ 
