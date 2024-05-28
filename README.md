@@ -1,1 +1,2 @@
 # pan-web
+MediCalm connects individuals struggling with mental health issues with small businesses in the community that offer mental health support, positively impacting both members and community businesses. There is also a filtering system for specific types of mental health issues that community members are affected by. There are also multiple parts of the web app that show business information for marketing.
